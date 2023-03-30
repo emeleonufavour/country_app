@@ -23,7 +23,7 @@ class Country {
     required this.unMember,
     this.currencies,
     required this.idd,
-    this.capital,
+    required this.capital,
     required this.altSpellings,
     required this.region,
     this.subregion,
@@ -61,6 +61,7 @@ class Country {
   Currencies? currencies;
   Idd idd;
   List<String>? capital;
+  //String capital;
   List<String> altSpellings;
   Region region;
   String? subregion;
@@ -104,6 +105,7 @@ class Country {
         capital: json["capital"] == null
             ? []
             : List<String>.from(json["capital"]!.map((x) => x)),
+        //capital: (json['capital'] as List).first.toString(),
         altSpellings: List<String>.from(json["altSpellings"].map((x) => x)),
         region: regionValues.map[json["region"]]!,
         subregion: json["subregion"],

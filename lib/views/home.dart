@@ -1,4 +1,5 @@
 import 'package:country_app/controllers/countrycontroller.dart';
+import 'package:country_app/views/utilities.dart';
 import 'package:country_app/views/widgets/countryTile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,33 +13,54 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15).copyWith(bottom: 0),
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Explore',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    style: Utils.header,
                   ),
-                  Icon(Icons.line_style)
+                  const Icon(Icons.line_style)
                 ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                height: 40,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                    color: Colors.grey, borderRadius: BorderRadius.circular(5)),
+                child: TextField(
+                  controller: ctr.searchController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      border: InputBorder.none,
+                      hintText: 'Search Country',
+                      hintStyle: TextStyle(color: Colors.white)),
+                ),
               ),
               Expanded(
                 child: Obx(() {
                   if (ctr.countryList.isEmpty) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  return GridView.builder(
+                  return ListView.builder(
                       itemCount: ctr.countryList.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
                       itemBuilder: (context, index) {
                         return Padding(
                             padding: const EdgeInsets.all(8),
-                            child: CountryTile());
+                            child: CountryTile(
+                              country: ctr.countryList[index],
+                            ));
                       });
                 }),
               ),
