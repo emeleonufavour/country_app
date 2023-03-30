@@ -15,7 +15,6 @@ class CountryController extends GetxController {
   void onInit() {
     fetchCountries();
     searched.value = false;
-    // TODO: implement onInit
     super.onInit();
   }
 

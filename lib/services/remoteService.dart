@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:country_app/models/country.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +16,7 @@ class RemoteService {
         return countryFromJson(jsonString);
       }
     } catch (e) {
-      log('Error ' + e.toString());
+      log('Error: $e');
       return null;
     }
   }
