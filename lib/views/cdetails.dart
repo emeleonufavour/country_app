@@ -16,7 +16,6 @@ class CountryDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      //backgroundColor: Colors.indigo.withAlpha(50),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.indigo.withAlpha(50),
