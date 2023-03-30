@@ -19,34 +19,34 @@ class Country {
     required this.cca3,
     this.cioc,
     this.independent,
-    // required this.status,
+    required this.status,
     required this.unMember,
-    // this.currencies,
-    //required this.idd,
+    this.currencies,
+    required this.idd,
     this.capital,
     required this.altSpellings,
-    // required this.region,
+    required this.region,
     this.subregion,
-    // this.languages,
-    // required this.translations,
-    // required this.latlng,
+    //this.languages,
+    required this.translations,
+    required this.latlng,
     required this.landlocked,
     this.borders,
-    // required this.area,
-    // this.demonyms,
-    //required this.flag,
+    required this.area,
+    this.demonyms,
+    required this.flag,
     required this.maps,
     required this.population,
     //this.gini,
     this.fifa,
-    // required this.car,
+    required this.car,
     required this.timezones,
     required this.continents,
-    // required this.flags,
-    // required this.coatOfArms,
-    // required this.startOfWeek,
-    // required this.capitalInfo,
-    // this.postalCode,
+    required this.flags,
+    required this.coatOfArms,
+    required this.startOfWeek,
+    required this.capitalInfo,
+    this.postalCode,
   });
 
   Name name;
@@ -56,34 +56,34 @@ class Country {
   String cca3;
   String? cioc;
   bool? independent;
-  // Status status;
+  Status status;
   bool unMember;
-  // Currencies? currencies;
-  //Idd idd;
+  Currencies? currencies;
+  Idd idd;
   List<String>? capital;
   List<String> altSpellings;
-  // Region region;
+  Region region;
   String? subregion;
-  // Map<String, String>? languages;
-  // Map<String, Translation> translations;
-  // List<dynamic> latlng;
+  // Map<String, String>? languages; problem with this
+  Map<String, Translation> translations;
+  List<dynamic> latlng;
   bool landlocked;
   List<String>? borders;
-  // dynamic area;
-  // Demonyms? demonyms;
-  //String flag;
+  dynamic area;
+  Demonyms? demonyms;
+  String flag;
   Maps maps;
   int population;
-  // Map<String, dynamic>? gini;
+  //Map<String, dynamic>? gini; problem with this
   String? fifa;
-  // Car car;
+  Car car;
   List<String> timezones;
   List<Continent> continents;
-  // Flags flags;
-  // CoatOfArms coatOfArms;
-  // StartOfWeek startOfWeek;
-  // CapitalInfo capitalInfo;
-  // PostalCode? postalCode;
+  Flags flags;
+  CoatOfArms coatOfArms;
+  StartOfWeek startOfWeek;
+  CapitalInfo capitalInfo;
+  PostalCode? postalCode;
 
   factory Country.fromJson(Map<String, dynamic> json) => Country(
         name: Name.fromJson(json["name"]),
@@ -95,48 +95,48 @@ class Country {
         cca3: json["cca3"],
         cioc: json["cioc"],
         independent: json["independent"] ?? true,
-        // status: statusValues.map[json["status"]]!,
+        status: statusValues.map[json["status"]]!,
         unMember: json["unMember"],
-        // currencies: json["currencies"] == null
-        //     ? null
-        //     : Currencies.fromJson(json["currencies"]),
-        // idd: Idd.fromJson(json["idd"]),
+        currencies: json["currencies"] == null
+            ? null
+            : Currencies.fromJson(json["currencies"]),
+        idd: Idd.fromJson(json["idd"]),
         capital: json["capital"] == null
             ? []
             : List<String>.from(json["capital"]!.map((x) => x)),
         altSpellings: List<String>.from(json["altSpellings"].map((x) => x)),
-        // region: regionValues.map[json["region"]]!,
+        region: regionValues.map[json["region"]]!,
         subregion: json["subregion"],
-        // languages: Map.from(json["languages"]!)
+        // languages: Map.from(json["languages"])
         //     .map((k, v) => MapEntry<String, String>(k, v)),
-        // translations: Map.from(json["translations"]).map((k, v) =>
-        //     MapEntry<String, Translation>(k, Translation.fromJson(v))),
-        // latlng: List<dynamic>.from(json["latlng"].map((x) => x)),
+        translations: Map.from(json["translations"]).map((k, v) =>
+            MapEntry<String, Translation>(k, Translation.fromJson(v))),
+        latlng: List<dynamic>.from(json["latlng"].map((x) => x)),
         landlocked: json["landlocked"],
         borders: json["borders"] == null
             ? []
             : List<String>.from(json["borders"]!.map((x) => x)),
-        // area: json["area"],
-        // demonyms: json["demonyms"] == null
-        //     ? null
-        //     : Demonyms.fromJson(json["demonyms"]),
-        // flag: json["flag"],
+        area: json["area"],
+        demonyms: json["demonyms"] == null
+            ? null
+            : Demonyms.fromJson(json["demonyms"]),
+        flag: json["flag"],
         maps: Maps.fromJson(json["maps"]),
         population: json["population"],
         // gini: Map.from(json["gini"]!)
         //     .map((k, v) => MapEntry<String, dynamic>(k, v)),
         fifa: json["fifa"],
-        // car: Car.fromJson(json["car"]),
+        car: Car.fromJson(json["car"]),
         timezones: List<String>.from(json["timezones"].map((x) => x)),
         continents: List<Continent>.from(
             json["continents"].map((x) => continentValues.map[x]!)),
-        // flags: Flags.fromJson(json["flags"]),
-        // coatOfArms: CoatOfArms.fromJson(json["coatOfArms"]),
-        // startOfWeek: startOfWeekValues.map[json["startOfWeek"]]!,
-        // capitalInfo: CapitalInfo.fromJson(json["capitalInfo"]),
-        // postalCode: json["postalCode"] == null
-        //     ? null
-        //     : PostalCode.fromJson(json["postalCode"]),
+        flags: Flags.fromJson(json["flags"]),
+        coatOfArms: CoatOfArms.fromJson(json["coatOfArms"]),
+        startOfWeek: startOfWeekValues.map[json["startOfWeek"]]!,
+        capitalInfo: CapitalInfo.fromJson(json["capitalInfo"]),
+        postalCode: json["postalCode"] == null
+            ? null
+            : PostalCode.fromJson(json["postalCode"]),
       );
 
   Map<String, dynamic> toJson() => {
