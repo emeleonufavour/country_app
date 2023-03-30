@@ -8,10 +8,13 @@ import '../services/remoteService.dart';
 class CountryController extends GetxController {
   TextEditingController searchController = TextEditingController();
   RxList countryList = [].obs;
+  RxList searchList = [].obs;
+  RxBool searched = false.obs;
 
   @override
   void onInit() {
     fetchCountries();
+    searched.value = false;
     // TODO: implement onInit
     super.onInit();
   }
@@ -21,12 +24,7 @@ class CountryController extends GetxController {
       final countries = await RemoteService.fetchCountries();
 
       if (countries != null) {
-        countries.sort((a, b) => a.name.official.compareTo(b.name.official));
-        countries.forEach((element) {
-          if (element.capital!.isNotEmpty) {
-            print(element.capital!.first);
-          }
-        });
+        countries.sort((a, b) => a.name.common.compareTo(b.name.common));
 
         countryList.value = countries;
       } else {
@@ -35,5 +33,18 @@ class CountryController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  void onSearch({required String query}) {
+    searchList.value = countryList
+        .where((country) => country.name.common.contains(query))
+        .toList();
+    searched.value = true;
+    searchController.clear();
+  }
+
+  void showAllCountries() {
+    searched.value = false;
+    searchController.clear();
   }
 }

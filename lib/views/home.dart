@@ -1,6 +1,8 @@
 import 'package:country_app/controllers/countrycontroller.dart';
+import 'package:country_app/views/cdetails.dart';
 import 'package:country_app/views/utilities.dart';
 import 'package:country_app/views/widgets/countryTile.dart';
+import 'package:country_app/views/widgets/searchedCountries.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,15 +32,17 @@ class MyHomePage extends StatelessWidget {
                 height: 15,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: 40,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    color: Colors.grey, borderRadius: BorderRadius.circular(5)),
+                    color: Colors.grey[700]!.withBlue(150),
+                    borderRadius: BorderRadius.circular(5)),
                 child: TextField(
+                  style: const TextStyle(color: Colors.white),
                   controller: ctr.searchController,
                   textAlign: TextAlign.center,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       icon: Icon(
                         Icons.search,
                         color: Colors.white,
@@ -46,6 +50,9 @@ class MyHomePage extends StatelessWidget {
                       border: InputBorder.none,
                       hintText: 'Search Country',
                       hintStyle: TextStyle(color: Colors.white)),
+                  onSubmitted: (value) {
+                    return ctr.onSearch(query: value);
+                  },
                 ),
               ),
               Expanded(
@@ -53,13 +60,23 @@ class MyHomePage extends StatelessWidget {
                   if (ctr.countryList.isEmpty) {
                     return const Center(child: CircularProgressIndicator());
                   }
+                  if (ctr.searched.value) {
+                    return SearchedCountries();
+                  }
                   return ListView.builder(
                       itemCount: ctr.countryList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                             padding: const EdgeInsets.all(8),
-                            child: CountryTile(
-                              country: ctr.countryList[index],
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CountryDetails(
+                                        country: ctr.countryList[index])));
+                              },
+                              child: CountryTile(
+                                country: ctr.countryList[index],
+                              ),
                             ));
                       });
                 }),

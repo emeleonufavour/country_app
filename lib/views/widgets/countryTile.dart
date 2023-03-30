@@ -13,35 +13,49 @@ class CountryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         height: 100,
         width: double.maxFinite,
         child: Row(
           children: [
-            Container(
-              height: 60,
-              width: 60,
-              color: Colors.red,
+            Hero(
+              tag: country.flags.png,
+              child: Container(
+                height: 60,
+                width: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          country.flags.png,
+                        ),
+                        fit: BoxFit.fill)),
+              ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 40,
+                SizedBox(
                   width: 200,
-                  child: Text(
-                    country.name.official,
-                    style: Utils.countryText,
+                  child: Hero(
+                    tag: country.name.common,
+                    child: Text(
+                      country.name.common,
+                      style: Utils.countryText,
+                    ),
                   ),
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Text(
                   country.capital!.isNotEmpty
                       ? country.capital!.first
-                      : 'No capital',
+                      : 'No capital recorded',
                   style: Utils.capitalText,
                 ),
               ],

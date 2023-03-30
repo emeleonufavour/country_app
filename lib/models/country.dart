@@ -27,7 +27,7 @@ class Country {
     required this.altSpellings,
     required this.region,
     this.subregion,
-    //this.languages,
+    required this.languages,
     required this.translations,
     required this.latlng,
     required this.landlocked,
@@ -65,7 +65,8 @@ class Country {
   List<String> altSpellings;
   Region region;
   String? subregion;
-  // Map<String, String>? languages; problem with this
+
+  Map<String, dynamic> languages;
   Map<String, Translation> translations;
   List<dynamic> latlng;
   bool landlocked;
@@ -109,7 +110,8 @@ class Country {
         altSpellings: List<String>.from(json["altSpellings"].map((x) => x)),
         region: regionValues.map[json["region"]]!,
         subregion: json["subregion"],
-        // languages: Map.from(json["languages"])
+        languages: (json['languages'] as Map<String, dynamic>),
+        //languages: Map.from(json["languages"])
         //     .map((k, v) => MapEntry<String, String>(k, v)),
         translations: Map.from(json["translations"]).map((k, v) =>
             MapEntry<String, Translation>(k, Translation.fromJson(v))),
