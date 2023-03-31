@@ -74,7 +74,7 @@ class CountryDetails extends StatelessWidget {
                                 height: 30,
                                 width: 30,
                                 decoration: const BoxDecoration(
-                                    color: Colors.blue, shape: BoxShape.circle),
+                                    color: Colors.grey, shape: BoxShape.circle),
                                 child: const Center(
                                   child: Icon(
                                     Icons.arrow_back_ios,
@@ -91,7 +91,7 @@ class CountryDetails extends StatelessWidget {
                                 height: 30,
                                 width: 30,
                                 decoration: const BoxDecoration(
-                                    color: Colors.blue, shape: BoxShape.circle),
+                                    color: Colors.grey, shape: BoxShape.circle),
                                 child: const Center(
                                   child: Icon(
                                     Icons.arrow_forward_ios,
