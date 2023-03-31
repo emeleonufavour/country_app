@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Utils {
+  static Color backgroundColor = Colors.indigo.withAlpha(50);
+  static Color textColor = Colors.white;
   static TextStyle header = GoogleFonts.lobster(
       fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white);
   static TextStyle countryText =

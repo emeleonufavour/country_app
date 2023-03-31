@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme:
             const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.light),
-        scaffoldBackgroundColor: Colors.indigo.withAlpha(50),
+        scaffoldBackgroundColor: Utils.backgroundColor,
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Utils.whiteSwatch)
             .copyWith(secondary: Colors.white),
       ),

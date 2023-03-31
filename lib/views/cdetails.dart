@@ -15,11 +15,11 @@ class CountryDetails extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Utils.textColor),
         backgroundColor: Colors.indigo.withAlpha(50),
         title: Text(
           country.name.common,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Utils.textColor),
         ),
       ),
       body: SingleChildScrollView(
