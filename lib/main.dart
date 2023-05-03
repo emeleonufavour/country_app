@@ -1,11 +1,17 @@
+import 'package:country_app/app/appSetup.locator.dart';
 import 'package:country_app/views/cdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-import 'views/home.dart';
+import 'app/appSetup.router.dart';
+import 'views/home/home.dart';
 import 'views/utilities.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+
   runApp(const MyApp());
 }
 
@@ -25,7 +31,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Utils.whiteSwatch)
             .copyWith(secondary: Colors.white),
       ),
-      home: MyHomePage(),
+      navigatorKey: StackedService.navigatorKey,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      //home: MyHomePage(),
     );
   }
 }

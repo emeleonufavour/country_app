@@ -1,13 +1,12 @@
-import 'package:country_app/controllers/countrycontroller.dart';
 import 'package:country_app/views/utilities.dart';
-import 'package:country_app/views/widgets/listbody.dart';
-import 'package:country_app/views/widgets/searchbar.dart';
+import 'package:country_app/views/smart%20widgets/listbody/listbodyview.dart';
+import 'package:country_app/views/smart%20widgets/searchBar/searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class MyHomePage extends StatelessWidget {
-  CountryController ctr = Get.put(CountryController());
+  //CountryController ctr = Get.put(CountryController());
   MyHomePage({super.key});
 
   @override
